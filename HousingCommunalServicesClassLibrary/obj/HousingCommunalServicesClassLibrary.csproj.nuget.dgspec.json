@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DNS\\source\\repos\\HousingCommunalServicesClassLibrary\\HousingCommunalServicesClassLibrary.csproj": {}
+    "C:\\Users\\DNS\\Documents\\GitHub\\HousingCommunalServices\\HousingCommunalServicesClassLibrary\\HousingCommunalServicesClassLibrary.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DNS\\source\\repos\\HousingCommunalServicesClassLibrary\\HousingCommunalServicesClassLibrary.csproj": {
+    "C:\\Users\\DNS\\Documents\\GitHub\\HousingCommunalServices\\HousingCommunalServicesClassLibrary\\HousingCommunalServicesClassLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DNS\\source\\repos\\HousingCommunalServicesClassLibrary\\HousingCommunalServicesClassLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\DNS\\Documents\\GitHub\\HousingCommunalServices\\HousingCommunalServicesClassLibrary\\HousingCommunalServicesClassLibrary.csproj",
         "projectName": "HousingCommunalServicesClassLibrary",
-        "projectPath": "C:\\Users\\DNS\\source\\repos\\HousingCommunalServicesClassLibrary\\HousingCommunalServicesClassLibrary.csproj",
+        "projectPath": "C:\\Users\\DNS\\Documents\\GitHub\\HousingCommunalServices\\HousingCommunalServicesClassLibrary\\HousingCommunalServicesClassLibrary.csproj",
         "packagesPath": "C:\\Users\\DNS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DNS\\source\\repos\\HousingCommunalServicesClassLibrary\\obj\\",
+        "outputPath": "C:\\Users\\DNS\\Documents\\GitHub\\HousingCommunalServices\\HousingCommunalServicesClassLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",

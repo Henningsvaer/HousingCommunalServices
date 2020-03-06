@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+  <users>
+    <!--1 user-->
+    <dbConnection>
+      <host>localhost</host>
+      <username>postgres</username>
+      <password>root</password>
+      <database>postgres</database>
+    </dbConnection>
+    
+    <googleAccConnection>
+      
+    </googleAccConnection>
+    <!--1 user-->
+  
+  </users>
+

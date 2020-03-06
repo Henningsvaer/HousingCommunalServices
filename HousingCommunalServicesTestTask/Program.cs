@@ -1,6 +1,5 @@
 ﻿using System;
 using HousingCommunalServicesClassLibrary;
-using Npgsql;
 
 namespace HousingCommunalServicesTestTask
 {
@@ -9,19 +8,15 @@ namespace HousingCommunalServicesTestTask
         static void Main(string[] args)
         {
             var manager = new HousingCommunalServicesManager();
-            manager.ConsoleReport();
+            var consoleReport = new ConsoleReport();
 
-            var cs = "Host=localhost;Username=postgres;Password=s$cret;Database=testdb";
+            manager.Report(consoleReport, "Приложение запущено.");
 
-            using var con = new NpgsqlConnection(cs);
-            con.Open();
+            var version = manager.GetDatabaseVersion();
+            manager.Report(consoleReport, version);
 
-            var sql = "SELECT version()";
-
-            using var cmd = new NpgsqlCommand(sql, con);
-
-            var version = cmd.ExecuteScalar().ToString();
-            Console.WriteLine($"PostgreSQL version: {version}");
+            var size = manager.GetDatabaseSize();
+            manager.Report(consoleReport, size);
         }
     }
 }

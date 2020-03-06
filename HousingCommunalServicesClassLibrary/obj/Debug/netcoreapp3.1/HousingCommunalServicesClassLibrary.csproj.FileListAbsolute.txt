@@ -6,3 +6,11 @@ C:\Users\DNS\source\repos\HousingCommunalServicesClassLibrary\obj\Debug\netcorea
 C:\Users\DNS\source\repos\HousingCommunalServicesClassLibrary\obj\Debug\netcoreapp3.1\HousingCommunalServicesClassLibrary.AssemblyInfo.cs
 C:\Users\DNS\source\repos\HousingCommunalServicesClassLibrary\obj\Debug\netcoreapp3.1\HousingCommunalServicesClassLibrary.dll
 C:\Users\DNS\source\repos\HousingCommunalServicesClassLibrary\obj\Debug\netcoreapp3.1\HousingCommunalServicesClassLibrary.pdb
+C:\Users\DNS\Documents\GitHub\HousingCommunalServices\HousingCommunalServicesClassLibrary\bin\Debug\netcoreapp3.1\HousingCommunalServicesClassLibrary.deps.json
+C:\Users\DNS\Documents\GitHub\HousingCommunalServices\HousingCommunalServicesClassLibrary\bin\Debug\netcoreapp3.1\HousingCommunalServicesClassLibrary.dll
+C:\Users\DNS\Documents\GitHub\HousingCommunalServices\HousingCommunalServicesClassLibrary\bin\Debug\netcoreapp3.1\HousingCommunalServicesClassLibrary.pdb
+C:\Users\DNS\Documents\GitHub\HousingCommunalServices\HousingCommunalServicesClassLibrary\obj\Debug\netcoreapp3.1\HousingCommunalServicesClassLibrary.csprojAssemblyReference.cache
+C:\Users\DNS\Documents\GitHub\HousingCommunalServices\HousingCommunalServicesClassLibrary\obj\Debug\netcoreapp3.1\HousingCommunalServicesClassLibrary.AssemblyInfoInputs.cache
+C:\Users\DNS\Documents\GitHub\HousingCommunalServices\HousingCommunalServicesClassLibrary\obj\Debug\netcoreapp3.1\HousingCommunalServicesClassLibrary.AssemblyInfo.cs
+C:\Users\DNS\Documents\GitHub\HousingCommunalServices\HousingCommunalServicesClassLibrary\obj\Debug\netcoreapp3.1\HousingCommunalServicesClassLibrary.dll
+C:\Users\DNS\Documents\GitHub\HousingCommunalServices\HousingCommunalServicesClassLibrary\obj\Debug\netcoreapp3.1\HousingCommunalServicesClassLibrary.pdb
