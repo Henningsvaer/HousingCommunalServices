@@ -1,5 +1,6 @@
 ﻿using System;
 using HousingCommunalServicesClassLibrary;
+using HousingCommunalServicesClassLibrary.XML;
 
 namespace HousingCommunalServicesTestTask
 {
@@ -7,7 +8,20 @@ namespace HousingCommunalServicesTestTask
     {
         static void Main(string[] args)
         {
-            var manager = new HousingCommunalServicesManager();
+            // Исправить.
+            var path = @"C:\Users\DNS\Documents\GitHub\HousingCommunalServices\HousingCommunalServicesTestTask\Config.xml";
+            User user;
+
+            try
+            {
+                user = XMLReader.Read(path);
+            }
+            catch
+            {
+                throw new Exception();
+            }
+
+            var manager = new HousingCommunalServicesManager(user);
             var consoleReport = new ConsoleReport();
 
             manager.Report(consoleReport, "Приложение запущено.");

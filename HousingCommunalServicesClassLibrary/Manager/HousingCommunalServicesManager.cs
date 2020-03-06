@@ -1,4 +1,5 @@
-﻿using Npgsql;
+﻿using HousingCommunalServicesClassLibrary.XML;
+using Npgsql;
 using System;
 
 namespace HousingCommunalServicesClassLibrary
@@ -6,31 +7,20 @@ namespace HousingCommunalServicesClassLibrary
     public sealed class HousingCommunalServicesManager
     {
         private readonly string _connectionString;
-        private string _host { get; }
-        private string _username { get; }
-        private string _password { get; }
-        private string _database { get; }
+        private readonly string _host;
+        private readonly string _username;
+        private readonly string _password;
+        private readonly string _database;
 
-        public HousingCommunalServicesManager()
+        private HousingCommunalServicesManager()
+        { }
+
+        public HousingCommunalServicesManager(User user)
         {
-            _host = "localhost";
-            _username = "postgres";
-            _password = "root";
-            _database = "postgres";
-            _connectionString = $"Host=localhost;Username=postgres;Password=root;Database=postgres";
-        }
-
-        public HousingCommunalServicesManager(string host, string username, 
-            string password, string database)
-        {
-            if (string.IsNullOrEmpty(host)      || string.IsNullOrEmpty(username) ||
-                string.IsNullOrEmpty(password)  || string.IsNullOrEmpty(database))
-                throw new ArgumentNullException();
-
-            _host = host;
-            _username = username;
-            _password = password;
-            _database = database;
+            _host = user.Host;
+            _username = user.Username;
+            _password = user.Password;
+            _database = user.Database;
 
             // Инит. connectionString.
             _connectionString = $"Host={_host};Username={_username};Password={_password};Database={_database}";

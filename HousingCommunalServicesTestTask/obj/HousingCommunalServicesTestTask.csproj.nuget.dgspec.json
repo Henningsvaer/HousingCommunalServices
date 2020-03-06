@@ -43,6 +43,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Google.Apis.Sheets.v4": {
+              "target": "Package",
+              "version": "[1.44.1.1881, )"
+            },
             "Npgsql": {
               "target": "Package",
               "version": "[4.1.3.1, )"
