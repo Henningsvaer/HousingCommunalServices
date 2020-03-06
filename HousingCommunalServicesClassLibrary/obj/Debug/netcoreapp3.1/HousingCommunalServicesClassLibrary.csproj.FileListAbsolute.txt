@@ -1,0 +1,8 @@
+C:\Users\DNS\source\repos\HousingCommunalServicesClassLibrary\bin\Debug\netcoreapp3.1\HousingCommunalServicesClassLibrary.deps.json
+C:\Users\DNS\source\repos\HousingCommunalServicesClassLibrary\bin\Debug\netcoreapp3.1\HousingCommunalServicesClassLibrary.dll
+C:\Users\DNS\source\repos\HousingCommunalServicesClassLibrary\bin\Debug\netcoreapp3.1\HousingCommunalServicesClassLibrary.pdb
+C:\Users\DNS\source\repos\HousingCommunalServicesClassLibrary\obj\Debug\netcoreapp3.1\HousingCommunalServicesClassLibrary.csprojAssemblyReference.cache
+C:\Users\DNS\source\repos\HousingCommunalServicesClassLibrary\obj\Debug\netcoreapp3.1\HousingCommunalServicesClassLibrary.AssemblyInfoInputs.cache
+C:\Users\DNS\source\repos\HousingCommunalServicesClassLibrary\obj\Debug\netcoreapp3.1\HousingCommunalServicesClassLibrary.AssemblyInfo.cs
+C:\Users\DNS\source\repos\HousingCommunalServicesClassLibrary\obj\Debug\netcoreapp3.1\HousingCommunalServicesClassLibrary.dll
+C:\Users\DNS\source\repos\HousingCommunalServicesClassLibrary\obj\Debug\netcoreapp3.1\HousingCommunalServicesClassLibrary.pdb
