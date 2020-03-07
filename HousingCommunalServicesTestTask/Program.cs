@@ -18,19 +18,25 @@ namespace HousingCommunalServicesTestTask
             }
             catch
             {
-                throw new Exception();
+                throw new ArgumentException();
             }
-
-            var manager = new HousingCommunalServicesManager(user);
+            // Так как нам нужен консольный вывод.
             var consoleReport = new ConsoleReport();
 
+            // Инит. новое соединение.
+            using var manager = new HousingCommunalServicesManager(user);
             manager.Report(consoleReport, "Приложение запущено.");
 
+            // Получение версии бд.
             var version = manager.GetDatabaseVersion();
             manager.Report(consoleReport, version);
 
+            // Получение размер бд.
             var size = manager.GetDatabaseSize();
             manager.Report(consoleReport, size);
+
+
+
         }
     }
 }

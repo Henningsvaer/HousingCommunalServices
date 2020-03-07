@@ -4,7 +4,8 @@ using System;
 
 namespace HousingCommunalServicesClassLibrary
 {
-    public sealed class HousingCommunalServicesManager
+    // Получение информации о бд.
+    public sealed class HousingCommunalServicesManager: IDisposable
     {
         private readonly string _connectionString;
         private readonly string _host;
@@ -43,17 +44,20 @@ namespace HousingCommunalServicesClassLibrary
             report.Display(message);
         }
 
-        private string MakeSQLCommand(string command)
+        private string MakeSQLCommand(string request)
         {
-            using var con = new NpgsqlConnection(_connectionString);
-            con.Open();
+            using var connection = new NpgsqlConnection(_connectionString);
+            connection.Open();
 
-            var sql = command;
+            using var command = new NpgsqlCommand(request, connection);
 
-            using var cmd = new NpgsqlCommand(sql, con);
-
-            var result = cmd.ExecuteScalar().ToString();
+            var result = command.ExecuteScalar().ToString();
             return result;
+        }
+
+        public void Dispose()
+        {
+            
         }
     }
 }
