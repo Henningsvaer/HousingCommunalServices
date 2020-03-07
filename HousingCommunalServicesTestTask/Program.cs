@@ -1,5 +1,6 @@
 ﻿using System;
 using HousingCommunalServicesClassLibrary;
+using HousingCommunalServicesClassLibrary.GoogleAPI;
 using HousingCommunalServicesClassLibrary.XML;
 
 namespace HousingCommunalServicesTestTask
@@ -10,11 +11,11 @@ namespace HousingCommunalServicesTestTask
         {
             // Исправить.
             var path = @"C:\Users\DNS\Documents\GitHub\HousingCommunalServices\HousingCommunalServicesTestTask\Config.xml";
-            User user;
+            User[] users;
 
             try
             {
-                user = XMLReader.Read(path);
+                users = XMLReader.Read(path);
             }
             catch
             {
@@ -24,18 +25,18 @@ namespace HousingCommunalServicesTestTask
             var consoleReport = new ConsoleReport();
 
             // Инит. новое соединение.
-            using var manager = new HousingCommunalServicesManager(user);
+            using var manager = new HousingCommunalServicesManager(users[0]);
             manager.Report(consoleReport, "Приложение запущено.");
 
             // Получение версии бд.
             var version = manager.GetDatabaseVersion();
-            manager.Report(consoleReport, version);
+            manager.Report(consoleReport, $"PostgreSQL version: {manager.DatabaseName} -- {version}");
 
             // Получение размер бд.
             var size = manager.GetDatabaseSize();
-            manager.Report(consoleReport, size);
+            manager.Report(consoleReport, $"PostgreSQL db size: {manager.DatabaseName} -- {size}");
 
-
+            var x = new GoogleAPIAccountManager("bla-bla app");
 
         }
     }

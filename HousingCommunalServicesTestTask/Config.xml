@@ -1,13 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<user>
+<users>
   <dbConnection>
     <host>localhost</host>
     <username>postgres</username>
     <password>root</password>
     <database>postgres</database>
-  </dbConnection>    
-  <googleAccConnection>
-      
-  </googleAccConnection>
-</user>
+  </dbConnection>
+</users>
 

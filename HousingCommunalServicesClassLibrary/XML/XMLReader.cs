@@ -5,7 +5,7 @@ namespace HousingCommunalServicesClassLibrary.XML
 {
     public static class XMLReader
     {
-        public static User Read(string path)
+        public static User[] Read(string path)
         {
             if (string.IsNullOrEmpty(path))
                 throw new ArgumentException();
@@ -15,8 +15,11 @@ namespace HousingCommunalServicesClassLibrary.XML
 
             // получим корневой элемент
             XmlElement xRoot = xDoc.DocumentElement;
-            User user = new User();
 
+            int childsCount = xRoot.ChildNodes.Count;
+            User[] users = new User[childsCount];
+
+            int currentUserNumber = 0;
             // обход всех узлов в корневом элементе
             foreach (XmlNode xnode in xRoot)
             {
@@ -26,21 +29,24 @@ namespace HousingCommunalServicesClassLibrary.XML
                     switch (childnode.Name)
                     {
                         case "host":
-                            user.Host = childnode.InnerText;
+                            users[currentUserNumber].Host = childnode.InnerText;
                             break;
                         case "username":
-                            user.Username = childnode.InnerText;
+                            users[currentUserNumber].Username = childnode.InnerText;
                             break;
                         case "password":
-                            user.Password = childnode.InnerText;
+                            users[currentUserNumber].Password = childnode.InnerText;
                             break;
                         case "database":
-                            user.Database = childnode.InnerText;
+                            users[currentUserNumber].Database = childnode.InnerText;
                             break;
+                        default:
+                            throw new XmlException();
                     }
                 }
+                currentUserNumber++;
             }
-            return user;
+            return users;
         }
     }
 }

@@ -5,7 +5,7 @@ using System;
 namespace HousingCommunalServicesClassLibrary
 {
     // Получение информации о бд.
-    public sealed class HousingCommunalServicesManager: IDisposable
+    public sealed class HousingCommunalServicesManager : IDisposable
     {
         private readonly string _connectionString;
         private readonly string _host;
@@ -13,6 +13,7 @@ namespace HousingCommunalServicesClassLibrary
         private readonly string _password;
         private readonly string _database;
 
+        public string DatabaseName { get => _database; }
         private HousingCommunalServicesManager()
         { }
 
@@ -30,13 +31,13 @@ namespace HousingCommunalServicesClassLibrary
         public string GetDatabaseSize()
         {
             var size = MakeSQLCommand($"SELECT pg_size_pretty(pg_database_size('{_database}'));");
-            return $"PostgreSQL db size: {_database} -- {size}";
+            return size;
         }
 
         public string GetDatabaseVersion()
         {
             var version = MakeSQLCommand("SELECT version()");
-            return $"PostgreSQL version: {version}";
+            return version;
         }
 
         public void Report(IReport report, string message)

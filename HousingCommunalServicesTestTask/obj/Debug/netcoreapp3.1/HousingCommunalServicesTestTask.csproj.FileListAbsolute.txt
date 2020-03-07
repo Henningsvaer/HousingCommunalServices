@@ -28,3 +28,10 @@ C:\Users\DNS\Documents\GitHub\HousingCommunalServices\HousingCommunalServicesTes
 C:\Users\DNS\Documents\GitHub\HousingCommunalServices\HousingCommunalServicesTestTask\obj\Debug\netcoreapp3.1\HousingCommunalServicesTestTask.csproj.CopyComplete
 C:\Users\DNS\Documents\GitHub\HousingCommunalServices\HousingCommunalServicesTestTask\obj\Debug\netcoreapp3.1\HousingCommunalServicesTestTask.dll
 C:\Users\DNS\Documents\GitHub\HousingCommunalServices\HousingCommunalServicesTestTask\obj\Debug\netcoreapp3.1\HousingCommunalServicesTestTask.pdb
+C:\Users\DNS\Documents\GitHub\HousingCommunalServices\HousingCommunalServicesTestTask\bin\Debug\netcoreapp3.1\credentials.json
+C:\Users\DNS\Documents\GitHub\HousingCommunalServices\HousingCommunalServicesTestTask\bin\Debug\netcoreapp3.1\Google.Apis.dll
+C:\Users\DNS\Documents\GitHub\HousingCommunalServices\HousingCommunalServicesTestTask\bin\Debug\netcoreapp3.1\Google.Apis.Auth.PlatformServices.dll
+C:\Users\DNS\Documents\GitHub\HousingCommunalServices\HousingCommunalServicesTestTask\bin\Debug\netcoreapp3.1\Google.Apis.Auth.dll
+C:\Users\DNS\Documents\GitHub\HousingCommunalServices\HousingCommunalServicesTestTask\bin\Debug\netcoreapp3.1\Google.Apis.Core.dll
+C:\Users\DNS\Documents\GitHub\HousingCommunalServices\HousingCommunalServicesTestTask\bin\Debug\netcoreapp3.1\Google.Apis.Sheets.v4.dll
+C:\Users\DNS\Documents\GitHub\HousingCommunalServices\HousingCommunalServicesTestTask\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
