@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<users>
+  <dbConnection>
+    <host>localhost</host>
+    <username>postgres</username>
+    <password>root</password>
+    <database>postgres</database>
+  </dbConnection>
+  <dbConnection>
+    <host>localhost</host>
+    <username>test</username>
+    <password>root</password>
+    <database>test</database>
+  </dbConnection>
+</users>
+

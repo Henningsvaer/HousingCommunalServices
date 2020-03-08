@@ -6,5 +6,11 @@
     <password>root</password>
     <database>postgres</database>
   </dbConnection>
+  <dbConnection>
+    <host>localhost</host>
+    <username>test</username>
+    <password>root</password>
+    <database>test</database>
+  </dbConnection>
 </users>
 

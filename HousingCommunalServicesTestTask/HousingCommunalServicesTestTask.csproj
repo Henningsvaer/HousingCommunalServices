@@ -10,6 +10,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="users_config.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="credentials.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

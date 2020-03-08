@@ -8,42 +8,79 @@ namespace HousingCommunalServicesTestTask
 {
     internal sealed class Program
     {
+        static decimal KBToGB(string size)
+        {
+            string temp = string.Empty;
+            for(int i = 0; size[i] != ' ' && i != size.Length - 1; i++ )
+            {
+                temp += size[i];
+            }
+
+            decimal decimalSize = 0;
+            try
+            {
+                decimalSize = decimal.Parse(temp);
+            }
+            catch { Console.WriteLine($"{temp} невозможно преобразовать в ГБ."); return decimalSize; }
+
+            decimal divide = 1048576;
+            return decimalSize / divide;
+        }
+
+        static private decimal GetTotalFreeSpace()
+        {
+            DriveInfo[] allDrives = DriveInfo.GetDrives();
+
+            foreach (DriveInfo d in allDrives)
+            {
+                if (d.IsReady == true)
+                {
+                    return d.TotalFreeSpace;
+                }
+            }
+            return -1;
+        }
+
         static void Main(string[] args)
         {
-            // Исправить.
-            var path = @"C:\Users\DNS\Documents\GitHub\HousingCommunalServices\HousingCommunalServicesTestTask\Config.xml";
+            // Файл с настройками пользователей.
+            var fullPath = Path.GetFullPath(@"users_config.xml");
             User[] users;
 
             try
             {
-                users = XMLReader.Read(path);
+                users = XMLReader.Read(fullPath);
             }
             catch
             {
                 throw new ArgumentException();
             }
-            // Так как нам нужен консольный вывод.
-            var consoleReport = new ConsoleReport();
 
             // Инит. новое соединение.
             using var manager = new HousingCommunalServicesManager(users[0]);
-            manager.Report(consoleReport, "Приложение запущено.");
+            manager.Report(new ConsoleReport(), "Приложение запущено.");
 
             // Получение версии бд.
             var version = manager.GetDatabaseVersion();
-            manager.Report(consoleReport, $"PostgreSQL version: {manager.DatabaseName} -- {version}");
+            manager.Report(new ConsoleReport(), 
+                $"PostgreSQL version: {version}");
 
             // Получение размера бд.
             var size = manager.GetDatabaseSize();
-            manager.Report(consoleReport, $"PostgreSQL db size: {manager.DatabaseName} -- {size}");
+            manager.Report(new ConsoleReport(),
+                $"PostgreSQL {manager.DatabaseName} db size: {KBToGB(size).ToString()} GB");
 
-
-            // Передать в конструкторе.
             // Id таблицы.
             string spreadsheetId = "1fMYWuwhjYpYou3XrlZYWnuMXcxTiXEfrG9xWGK9wIUQ";
-            
-            // Название приложения не на англ. == ошибка.
-            var googleAccManager = new GoogleAPIAccountManager("Anton App");
+
+            // Примечание: Название приложения не на англ. == ошибка.
+            var googleAccManager = new GoogleAPIAccountManager
+                (
+                    "Anton App",
+                    users[0].Database,
+                    KBToGB(size).ToString(),
+                   (GetTotalFreeSpace() / 1073741824).ToString()
+                );
             var result = googleAccManager.UpdateSheetInGoogleTables(spreadsheetId);
 
             return;
