@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace HousingCommunalServicesClassLibrary.GoogleAPI
 {
-    enum ResponseCommand
+    public enum ResponseCommand
     {
         CREATE = 0,
         UPDATE = 1,
@@ -32,13 +32,13 @@ namespace HousingCommunalServicesClassLibrary.GoogleAPI
         public DateTime LastUpdate { get; }
 
         // Параметры запроса.
-        // Передать в конструкторе.
-        // Id таблицы.
-        private string spreadsheetId = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms";
         // Лист!ячейка1:ячейкаN
-        private string range = "Class Data!A2:D";
+        private string range = "Лист1!A1:D";
         private string[] Scopes = 
             { SheetsService.Scope.Spreadsheets, SheetsService.Scope.SpreadsheetsReadonly };
+
+        // Значения для таблицы.
+        private ValueRange valueRange;
 
         private GoogleAPIAccountManager()
         { }
@@ -48,25 +48,49 @@ namespace HousingCommunalServicesClassLibrary.GoogleAPI
         {
             ApplicationName = applicationName;
             CredentialFileName = credentialFileName;
+
+            // Убрать вот это.
+            valueRange = new ValueRange();
+            var oblist = new List<object>() { "My Cell Text" };
+            valueRange.Values = new List<IList<object>> { oblist };
         }
 
-        public void CreateSheetInGoogleTables()
+        // Создание таблицы.
+        public Spreadsheet CreateSheetInGoogleTables()
         {
-            var request = MakeConnectionToGoogleAccount(ResponseCommand.CREATE);
+            var request = MakeConnectionToGoogleAccount<SpreadsheetsResource.CreateRequest>
+                (ResponseCommand.CREATE,"");
+
             if (request == null)
                 throw new NullReferenceException();
 
-
+            // Выполняем запрос.
+            Spreadsheet newSpreadsheet = request.Execute();
+            return newSpreadsheet;
         }
 
-        public void UpdateSheetInGoogleTables()
+        // Обновление таблицы.
+        public UpdateValuesResponse UpdateSheetInGoogleTables(string spreadsheetId)
         {
+            var request = MakeConnectionToGoogleAccount<SpreadsheetsResource.ValuesResource.UpdateRequest>
+                (ResponseCommand.UPDATE, spreadsheetId);
+               
 
+            if (request == null)
+                throw new NullReferenceException();
+
+            // Выполняем запрос.
+            request.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.RAW;
+            UpdateValuesResponse result = request.Execute();
+            return result;
         }
 
-        public IList<IList<object>> ReadonlySheetInGoogleTables()
+        // Прочтение данных из таблицы.
+        public IList<IList<object>> ReadonlySheetInGoogleTables(string spreadsheetId)
         {
-            var request = MakeConnectionToGoogleAccount(ResponseCommand.READ);
+            var request = MakeConnectionToGoogleAccount<SpreadsheetsResource.ValuesResource.GetRequest>
+                (ResponseCommand.READ, spreadsheetId);
+
             if (request == null)
                 throw new NullReferenceException();
 
@@ -85,8 +109,8 @@ namespace HousingCommunalServicesClassLibrary.GoogleAPI
         }
 
         // Соединение с гугл аккаунтом.
-        private SpreadsheetsResource.ValuesResource.GetRequest MakeConnectionToGoogleAccount
-            (ResponseCommand responseCommand)
+        private T MakeConnectionToGoogleAccount<T>
+            (ResponseCommand responseCommand, string spreadsheetId) where T : class
         {
             // Учетные данные.
             UserCredential credential;
@@ -112,19 +136,20 @@ namespace HousingCommunalServicesClassLibrary.GoogleAPI
                 ApplicationName = ApplicationName,
             });
 
+            T request = null;
             // Построение запроса.
-            SpreadsheetsResource.ValuesResource.GetRequest request = null;
             switch (responseCommand)
             {
                 case ResponseCommand.CREATE:
+                    request = service.Spreadsheets.Create(new Spreadsheet()) as T;
                     break;
                 case ResponseCommand.UPDATE:
+                    request = service.Spreadsheets.Values.Update(valueRange, 
+                        spreadsheetId, range) as T;
                     break;
                 case ResponseCommand.READ:
-                    request = service.Spreadsheets.Values.Get(spreadsheetId, range);
+                    request = service.Spreadsheets.Values.Get(spreadsheetId, range) as T;
                     break;
-                default:
-                    return null;
             }
             return request;
         }

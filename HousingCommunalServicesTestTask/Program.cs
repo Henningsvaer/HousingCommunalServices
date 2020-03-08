@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using HousingCommunalServicesClassLibrary;
 using HousingCommunalServicesClassLibrary.GoogleAPI;
 using HousingCommunalServicesClassLibrary.XML;
@@ -32,12 +33,27 @@ namespace HousingCommunalServicesTestTask
             var version = manager.GetDatabaseVersion();
             manager.Report(consoleReport, $"PostgreSQL version: {manager.DatabaseName} -- {version}");
 
-            // Получение размер бд.
+            // Получение размера бд.
             var size = manager.GetDatabaseSize();
             manager.Report(consoleReport, $"PostgreSQL db size: {manager.DatabaseName} -- {size}");
 
-            var x = new GoogleAPIAccountManager("bla-bla app");
 
+            // Передать в конструкторе.
+            // Id таблицы.
+            string spreadsheetId = "1fMYWuwhjYpYou3XrlZYWnuMXcxTiXEfrG9xWGK9wIUQ";
+            
+            // Название приложения не на англ. == ошибка.
+            var googleAccManager = new GoogleAPIAccountManager("Anton App");
+            var result = googleAccManager.UpdateSheetInGoogleTables(spreadsheetId);
+
+            return;
+
+            var collection = googleAccManager.ReadonlySheetInGoogleTables(spreadsheetId);
+
+            foreach(var item in collection)
+            {
+                Console.WriteLine($"{item[0]} | {item[1]} | {item[2]} | {item[3]}");
+            }
         }
     }
 }
