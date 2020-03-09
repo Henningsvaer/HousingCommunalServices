@@ -19,10 +19,10 @@ namespace HousingCommunalServicesClassLibrary
 
         public HousingCommunalServicesManager(User user)
         {
-            _host = user.Host;
+            _host = user.HostName;
             _username = user.Username;
             _password = user.Password;
-            _database = user.Database;
+            _database = user.DatabaseName;
 
             // Инит. connectionString.
             _connectionString = $"Host={_host};Username={_username};Password={_password};Database={_database}";

@@ -1,16 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <users>
-  <dbConnection>
+  <dbconnection>
     <host>localhost</host>
-    <username>postgres</username>
-    <password>root</password>
-    <database>postgres</database>
-  </dbConnection>
-  <dbConnection>
+    <username>****</username>
+    <password>****</password>
+    <database>****</database>
+    <freediskspace>0.4</freediskspace>
+    <range>Лист1!A1:D</range> <!--ИмяЛиста!столбец_от:столбец_до-->
+  </dbconnection>
+  <!--
+  <dbconnection>
     <host>localhost</host>
     <username>test</username>
     <password>root</password>
     <database>test</database>
-  </dbConnection>
+    <freediskspace>10</freediskspace>
+    <range>Лист2!A1:D</range> 
+  </dbconnection>
+  -->
 </users>
 

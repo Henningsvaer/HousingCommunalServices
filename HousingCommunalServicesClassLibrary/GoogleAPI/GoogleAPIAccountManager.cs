@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
+using HousingCommunalServicesClassLibrary.XML;
 
 namespace HousingCommunalServicesClassLibrary.GoogleAPI
 {
@@ -31,40 +32,37 @@ namespace HousingCommunalServicesClassLibrary.GoogleAPI
         public string DatabaseSize { get; private set; }
         public DateTime LastUpdate { get; private set; }
         public string DiskEnableSize { get; private set; }
+        public string Range { get; set; }
 
         // Заголовки для столбцов.
-        private List<object> cellHeaders = new List<object>()
+        private List<object> _cellHeaders = new List<object>()
         { "Сервер", "БД", "Размер в ГБ", "Дата обновления" };
 
-        private string enableString = "Доступно";
-
+        private string _enableString = "Доступно";
 
         // Параметры запроса.
-        // Лист!ячейка1:ячейкаN
-        private string range = "Лист1!A1:D";
-        private string[] Scopes = 
+        private string[] _scopes = 
             { SheetsService.Scope.Spreadsheets, SheetsService.Scope.SpreadsheetsReadonly };
 
         // Значения для таблицы.
-        private ValueRange valueRange = new ValueRange();
+        private ValueRange _valueRange = new ValueRange();
 
         private GoogleAPIAccountManager()
         { }
 
         public GoogleAPIAccountManager(
-            string applicationName, string databaseName,
-            string databaseSize, string diskEnableSize,
-            string serverName = "localhost",
+            string applicationName,
+            User user, string databaseSize,
             string credentialFileName = "credentials.json")
         {
             ApplicationName = applicationName;
             CredentialFileName = credentialFileName;
-            ServerName = serverName;
-            DatabaseName = databaseName;
+            ServerName = user.HostName;
+            DatabaseName = user.DatabaseName;
             DatabaseSize = databaseSize;
             LastUpdate = DateTime.Now;
-            DiskEnableSize = diskEnableSize;
-
+            DiskEnableSize = user.FreeDiskSpace;
+            Range = user.Range;
         }
 
         // Создание таблицы.
@@ -84,8 +82,8 @@ namespace HousingCommunalServicesClassLibrary.GoogleAPI
         // Обновление таблицы.
         public UpdateValuesResponse UpdateSheetInGoogleTables(string spreadsheetId)
         {
-            if(valueRange.Values != null) 
-                valueRange.Values.Clear();
+            if(_valueRange.Values != null) 
+                _valueRange.Values.Clear();
 
             var request = MakeConnectionToGoogleAccount<SpreadsheetsResource.ValuesResource.UpdateRequest>
                 (ResponseCommand.UPDATE, spreadsheetId);
@@ -139,7 +137,7 @@ namespace HousingCommunalServicesClassLibrary.GoogleAPI
                 string credPath = "token.json";
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,
-                    Scopes,
+                    _scopes,
                     "user",
                     CancellationToken.None,
                     new FileDataStore(credPath, true)).Result;
@@ -162,9 +160,9 @@ namespace HousingCommunalServicesClassLibrary.GoogleAPI
 
                 case ResponseCommand.UPDATE:
                     // Добавляем для таблицы заголовки.
-                    valueRange.Values = new List<IList<object>> 
+                    _valueRange.Values = new List<IList<object>> 
                     { 
-                        cellHeaders,
+                        _cellHeaders,
                         new List<object>() {
                             ServerName,
                             DatabaseName,
@@ -173,19 +171,19 @@ namespace HousingCommunalServicesClassLibrary.GoogleAPI
                         },
                         new List<object>() {
                             ServerName,
-                            enableString,
+                            _enableString,
                             DiskEnableSize,
                             DateTime.Now.ToString("d/M/yyyy")
                         }
                     };
 
                     LastUpdate = DateTime.Now;
-                    request = service.Spreadsheets.Values.Update(valueRange, 
-                        spreadsheetId, range) as T;
+                    request = service.Spreadsheets.Values.Update(_valueRange, 
+                        spreadsheetId, Range) as T;
                     break;
 
                 case ResponseCommand.READ:
-                    request = service.Spreadsheets.Values.Get(spreadsheetId, range) as T;
+                    request = service.Spreadsheets.Values.Get(spreadsheetId, Range) as T;
                     break;
             }
             return request;

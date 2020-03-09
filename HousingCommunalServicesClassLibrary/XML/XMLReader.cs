@@ -29,7 +29,7 @@ namespace HousingCommunalServicesClassLibrary.XML
                     switch (childnode.Name)
                     {
                         case "host":
-                            users[currentUserNumber].Host = childnode.InnerText;
+                            users[currentUserNumber].HostName = childnode.InnerText;
                             break;
                         case "username":
                             users[currentUserNumber].Username = childnode.InnerText;
@@ -38,10 +38,16 @@ namespace HousingCommunalServicesClassLibrary.XML
                             users[currentUserNumber].Password = childnode.InnerText;
                             break;
                         case "database":
-                            users[currentUserNumber].Database = childnode.InnerText;
+                            users[currentUserNumber].DatabaseName = childnode.InnerText;
+                            break;
+                        case "freediskspace":
+                            users[currentUserNumber].FreeDiskSpace = childnode.InnerText;
+                            break;
+                        case "range":
+                            users[currentUserNumber].Range = childnode.InnerText;
                             break;
                         default:
-                            throw new XmlException();
+                            break;
                     }
                 }
                 currentUserNumber++;
