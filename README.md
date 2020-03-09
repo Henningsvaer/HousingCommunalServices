@@ -45,7 +45,7 @@
 ### GoogleAPI
 **GoogleAPIAccountManager** >>> Класс, для взаимодействия с гугл аккаунтом.
 
-### Начало использования.
+## Начало использования.
 
 В проекте **HousingCommunalServicesTestTask**:
 
