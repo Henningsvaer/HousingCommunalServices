@@ -1,7 +1,7 @@
 # Тестовое задание "ЖКХ"
 
 ## Документация
-Решение состоит из двух проектов: HousingCommunalServicesTestTask и HousingCommunalServicesClassLibrary.
+Решение состоит из двух проектов: **HousingCommunalServicesTestTask** и **HousingCommunalServicesClassLibrary**.
 
 >______________________________________________
 
@@ -46,6 +46,8 @@
 **GoogleAPIAccountManager** >>> Класс, для взаимодействия с гугл аккаунтом.
 
 ### Начало использования.
+
+В проекте **HousingCommunalServicesTestTask**:
 
 * Заполнить поля в **users_config.xml**
 ```
