@@ -49,6 +49,10 @@
 
 ## Начало использования.
 
+* Создать бд postgresql
+
+Приложение подключается к бд и поэтому нам нужно ее создать и скопировать информацию о ней в соответствующие поля снизу.
+
 В проекте **HousingCommunalServicesTestTask**:
 
 * Заполнить поля в **users_config.xml**
@@ -68,15 +72,15 @@
 ```
 {
 	"installed":
-		{
-			"client_id":"****",
-			"project_id":"****",
-			"auth_uri":"https://accounts.google.com/o/oauth2/auth",
-			"token_uri":"https://oauth2.googleapis.com/token",
-			"auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
-			"client_secret":"****",
-			"redirect_uris":["urn:ietf:wg:oauth:2.0:oob","http://localhost"]
-		}
+	{
+		"client_id":"****",
+		"project_id":"****",
+		"auth_uri":"https://accounts.google.com/o/oauth2/auth",
+		"token_uri":"https://oauth2.googleapis.com/token",
+		"auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
+		"client_secret":"****",
+		"redirect_uris":["urn:ietf:wg:oauth:2.0:oob","http://localhost"]
+	}
 }
 
 ```
