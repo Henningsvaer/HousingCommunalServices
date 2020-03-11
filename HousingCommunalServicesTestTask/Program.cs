@@ -12,12 +12,12 @@ namespace HousingCommunalServicesTestTask
         static void Main(string[] args)
         {
             // Время задержки перед повторным обновлением.
-            int timeout = 1;
+            int secondsTimeout = 10;
             // Примечание: Название приложения не на англ. == ошибка.
             string appName = "APP NAME";
             // Id таблицы для обновления.
             string spreadsheetId = "";
-
+            
             // Файл с настройками пользователей.
             var fullPath = Path.GetFullPath(@"users_config.xml");
             User[] users;
@@ -62,10 +62,15 @@ namespace HousingCommunalServicesTestTask
                         var newSpreadSheet = googleAccManager.CreateSheetInGoogleTables();
                         spreadsheetId = newSpreadSheet.SpreadsheetId;
                     }
+
+                    // Вывод ссылки на таблицу в консоль.
+                    manager.Report(new ConsoleReport(),
+                        $"https://docs.google.com/spreadsheets/d/{spreadsheetId}/edit#gid=0");
+
                     var result = googleAccManager.UpdateSheetInGoogleTables(spreadsheetId);
                 }
                 // Ждем и продолжаем цикл.
-                Wait(timeout);
+                Wait(secondsTimeout);
             }
         }
         private static decimal KBToGB(string size)
