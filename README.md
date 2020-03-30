@@ -1,4 +1,4 @@
-# Тестовое задание "ЖКХ"
+# Система "ЖКХ"
 
 ## Документация
 Решение состоит из двух проектов: **HousingCommunalServicesTestTask** и **HousingCommunalServicesClassLibrary**.
